@@ -41,12 +41,12 @@ final class FormLabelRule extends AbstractA11yRule
 
         $label = $this->getLabelScope($tokens, $tokenIndex);
         $inner = substr($label, strlen($opening));
-        
+
         $forId = 1 === preg_match('/\sfor\s*=\s*(["\'])(.+?)\1/is', $opening, $m) ? $m[2] : '';
-        
+
         $hasContent = '' !== trim(strip_tags($inner));
         $wrapsControl = 1 === preg_match('/<(?:input|select|textarea)\b/i', $inner);
-        
+
         if ('' !== $forId && $hasContent) {
             return;
         }
@@ -71,7 +71,7 @@ final class FormLabelRule extends AbstractA11yRule
     {
         $this->idx = 0;
     }
-    
+
     private function getLabelScope(Tokens $tokens, int $start): string
     {
         $scope = '';
@@ -81,10 +81,10 @@ final class FormLabelRule extends AbstractA11yRule
                 break;
             }
         }
-    
+
         $from = stripos($scope, '<label');
         $to = stripos($scope, '</label>', (int) $from);
-    
+
         return false === $from || false === $to ? '' : substr($scope, $from, $to - $from);
     }
 }
