@@ -50,6 +50,7 @@ final class FormLabelRule extends AbstractA11yRule
         if ('' !== $forId && $hasContent) {
             return;
         }
+
         if ($wrapsControl) {
             return;
         }
